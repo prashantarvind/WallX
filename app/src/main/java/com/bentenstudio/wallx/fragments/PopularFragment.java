@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bentenstudio.wallx.AppController;
 import com.bentenstudio.wallx.Config;
 import com.bentenstudio.wallx.Constant;
 import com.bentenstudio.wallx.activity.DetailsActivity;
@@ -22,6 +23,8 @@ import com.bentenstudio.wallx.adapter.ParseRecyclerQueryAdapter;
 import com.bentenstudio.wallx.interfaces.Parse;
 import com.bentenstudio.wallx.model.ParseCategory;
 import com.bentenstudio.wallx.model.ParseWallpaper;
+import com.bentenstudio.wallx.utils.DeviceUtils;
+import com.bentenstudio.wallx.views.GridSpacingItemDecoration;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
@@ -36,6 +39,7 @@ public class PopularFragment extends Fragment {
     private String objectId;
     private static final String KEY_OBJECT_ID = "OBJECT_ID";
     private AppBarLayout mAppBarLayout;
+    private DeviceUtils mDeviceUtils;
 
     public static PopularFragment newInstance(String objectId) {
         Bundle args = new Bundle();
@@ -57,6 +61,7 @@ public class PopularFragment extends Fragment {
         mAppBarLayout = (AppBarLayout) getActivity().findViewById(R.id.app_bar);
         mAppBarLayout.addOnOffsetChangedListener(mAppBarLayoutListener);
         objectId = getArguments().getString(KEY_OBJECT_ID);
+        mDeviceUtils = AppController.getInstance().getUtils().getDeviceUtils();
 
         mProgressLoader.setVisibility(View.VISIBLE);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(Config.GRID_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
@@ -64,6 +69,7 @@ public class PopularFragment extends Fragment {
         adapter.addOnQueryLoadListener(new mQueryLoadListener());
         adapter.setOnGridItemClickListener(new mGridItemClickListener());
         mRecyclerView.getRecycledViewPool().setMaxRecycledViews(0, 2 * Config.GRID_COLUMNS);
+        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(Config.GRID_COLUMNS, mDeviceUtils.getSpanWidth(), false));
         mRecyclerView.setAdapter(adapter);
 
         setupSwipeRefresh();

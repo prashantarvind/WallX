@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.bentenstudio.wallx.fragments.DownloadsFragment;
 import com.bentenstudio.wallx.fragments.FavouriteFragment;
+import com.bentenstudio.wallx.fragments.LoginNoticeFragment;
+import com.parse.ParseUser;
 
 public class CollectionPagerAdapter extends FragmentPagerAdapter {
 
@@ -21,6 +23,9 @@ public class CollectionPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new DownloadsFragment();
             case 1:
+                if(ParseUser.getCurrentUser() == null){
+                    return new LoginNoticeFragment();
+                }
                 return new FavouriteFragment();
         }
         return null;

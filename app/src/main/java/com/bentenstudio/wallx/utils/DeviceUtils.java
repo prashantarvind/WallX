@@ -8,6 +8,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.bentenstudio.wallx.Config;
+import com.bentenstudio.wallx.R;
 
 public class DeviceUtils {
 
@@ -38,6 +39,14 @@ public class DeviceUtils {
 
 
         return new Point(newWidth,newHeight);
+    }
+
+    public int getGridItemHeight(){
+        return (getScreenPoint().x/Config.GRID_COLUMNS)-getSpanWidth();
+    }
+
+    public int getSpanWidth(){
+        return mContext.getResources().getDimensionPixelSize(R.dimen.recycler_grid_spacing);
     }
 
     ConnectivityManager connectivityManager;

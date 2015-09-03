@@ -25,6 +25,8 @@
 
     <string name="home.noresult">No result found</string>
 
+    <!-- General -->
+    <string name="general.login.notice">Please login to see content</string>
 
     <string name="submission.button.submit">Submit</string>
     <string name="submission.button.cancel">Cancel</string>

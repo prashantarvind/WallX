@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Category"/>
+    <style name="Category.ListText"/>
+    <style name="Category.Grid"/>
+    <style name="Category.List"/>
+
+    <style name="Category.ListText.Layout">
+        <item name="android:layout_margin">10dp</item>
+
+    </style>
+    <style name="Category.ListText.Item">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:padding">20dp</item>
+    </style>
+</resources>

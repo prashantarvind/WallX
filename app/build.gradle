@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        applicationId "com.bentenstudio.wallx"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:design:23.0.0'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'com.android.support:cardview-v7:23.0.0'
+    compile 'com.parse.bolts:bolts-android:1.2.1'
+    compile 'com.parse:parse-android:1.10.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.realm:realm-android:0.82.1'
+    compile project(':ParseLoginUI')
+    compile files('libs/ParseFacebookUtilsV4-1.10.0.jar')
+    compile files('libs/ParseTwitterUtils-1.10.0.jar')
+    compile 'com.facebook.android:facebook-android-sdk:4.5.0'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jonathanfinerty.once:once:0.3.2'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.4.0'
+    compile 'io.realm:realm-android:0.82.1'
+    compile 'com.kogitune:pre-lollipop-activity-transition:1.0.0'
+    compile 'com.kbeanie:image-chooser-library:1.4.4@aar'
+    compile 'me.gujun.android.taggroup:library:1.4@aar'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.soundcloud.android:android-crop:1.0.0@aar'
+    compile 'konifar:fab-transformation:1.0.0'
+    compile 'net.steamcrafted:materialiconlib:1.0.4'
+    compile 'com.flipboard:bottomsheet-core:1.3.0'
+    compile 'com.flipboard:bottomsheet-commons:1.3.0'
+    compile 'com.jenzz:materialpreference:1.3'
+    compile project(':v4')
+    compile 'com.github.paolorotolo:appintro:3.2.0'
+}

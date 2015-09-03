@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fabsheet.item.height"
+        android:orientation="horizontal">
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Detail.Action.Icon"
+            app:materialIcon="arrange_send_backward"
+            />
+        <TextView
+            android:id="@+id/buttonWallpaper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail.action.set.text"
+            style="@style/Detail.Action.Text"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fabsheet.item.height"
+        android:orientation="horizontal">
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Detail.Action.Icon"
+            app:materialIcon="download"/>
+        <TextView
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Detail.Action.Text"
+            android:text="@string/detail.action.save.text" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fabsheet.item.height"
+        android:orientation="horizontal">
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Detail.Action.Icon"
+            app:materialIcon="heart_outline"/>
+        <TextView
+            android:id="@+id/buttonFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Detail.Action.Text"
+            android:text="@string/detail.action.favourite.text" />
+    </LinearLayout>
+</LinearLayout>

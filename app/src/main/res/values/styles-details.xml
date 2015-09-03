@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Detail"/>
+    <style name="Detail.Action"/>
+    <style name="Detail.Action.Text">
+        <item name="android:textSize">@dimen/fabsheet.text.size</item>
+        <item name="android:padding">@dimen/fabsheet.text.padding</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="Detail.Action.Icon">
+        <item name="android:paddingLeft">@dimen/fabsheet.text.padding</item>
+        <item name="android:paddingTop">@dimen/fabsheet.text.padding</item>
+        <item name="android:paddingBottom">@dimen/fabsheet.text.padding</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+</resources>

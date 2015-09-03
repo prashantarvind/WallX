@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9C27B0</color> <!--2196F3-->
+    <color name="colorPrimaryDark">#7B1FA2</color> <!--1565C0-->
+    <color name="colorAccent">#D4E157</color>
+    <color name="backgroundMain">#2d3941</color>
+
+    <color name="nav_item_icon_tint_color">#cecece</color> <!--333-->
+    <color name="nav_item_text_color">#cecece</color> <!--333-->
+    <color name="black_alpha_30">#4D000000</color>
+
+    <!-- Material Spinner -->
+    <color name="disabled_color">#44000000</color>
+    <color name="error_color">#E7492E</color>
+</resources>

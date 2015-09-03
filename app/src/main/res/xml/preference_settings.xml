@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.jenzz.materialpreference.PreferenceCategory android:title="@string/settings.category.social" >
+        <com.jenzz.materialpreference.CheckBoxPreference
+            android:key="@string/settings.key.facebook"
+            android:icon="@drawable/com_facebook_button_icon"
+            android:summary="Facebook"/>
+    </com.jenzz.materialpreference.PreferenceCategory>
+
+    <com.jenzz.materialpreference.PreferenceCategory android:title="@string/settings.category.logout" >
+        <com.jenzz.materialpreference.Preference
+            android:key="@string/settings.key.account"
+            android:icon="@drawable/ic_exit_to_app_grey_500_18dp"
+            android:summary="Facebook"/>
+    </com.jenzz.materialpreference.PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.bentenstudio.wallx.activity.DetailsActivity">
+      <item
+          android:id="@+id/buttonWallpaper"
+          android:icon="@drawable/ic_aspect_ratio_red_300_24dp"
+          android:title="@string/detail.action.set.text"/>
+      <item
+          android:id="@+id/buttonFavourite"
+          android:icon="@drawable/ic_bookmark_outline_red_300_24dp"
+          android:title="@string/detail.action.favourite.text"/>
+</menu>

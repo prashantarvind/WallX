@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -20,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.bentenstudio.wallx.AppController;
@@ -88,7 +87,7 @@ public class SubmissionActivity extends AppCompatActivity {
     @Bind(R.id.chooseImageIcon) ImageView mChooseImageIcon;
     @Bind(R.id.tagGroup) TagGroup mTagGroup;
     @Bind(R.id.chooseCategory) MaterialSpinner mMaterialSpinner;
-    @Bind(R.id.actionLayout) LinearLayout mActionLayout;
+    @Bind(R.id.buttonProgress) ProgressBar mButtonProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,7 +148,6 @@ public class SubmissionActivity extends AppCompatActivity {
                         runEnterAnimation(mChooseImageLayout,200);
                         runEnterAnimation(mMaterialSpinner, 300);
                         runEnterAnimation(mTagGroup,400);
-                        runEnterAnimation(mActionLayout,500);
                     }
                 })
                 .start();
@@ -157,12 +155,12 @@ public class SubmissionActivity extends AppCompatActivity {
 
     private void setChildInitialScale(){
         mChooseImageLayout.setTranslationY(100);
-        mActionLayout.setTranslationY(100);
+        /*mActionLayout.setTranslationY(100);*/
         mMaterialSpinner.setTranslationY(100);
         mTagGroup.setTranslationY(100);
     }
 
-    private void animateContent() {
+    /*private void animateContent() {
         //commentsAdapter.updateItems();
         mActionLayout.animate().translationY(0)
                 .setInterpolator(new DecelerateInterpolator())
@@ -174,7 +172,7 @@ public class SubmissionActivity extends AppCompatActivity {
                     }
                 })
                 .start();
-    }
+    }*/
 
     private void runEnterAnimation(View view, int duration) {
         view.animate().translationY(0)
@@ -201,7 +199,7 @@ public class SubmissionActivity extends AppCompatActivity {
     }
 
     private void renderCategorySpinner(){
-        ParseQuery query = ParseCategory.getQuery();
+        ParseQuery<ParseCategory> query = ParseCategory.getQuery();
         query.addAscendingOrder("categoryName");
         query.fromLocalDatastore();
         query.findInBackground(new FindCallback<ParseCategory>() {
@@ -239,11 +237,14 @@ public class SubmissionActivity extends AppCompatActivity {
 
     private void uploadToParse(){
         if (parsePath != null){
+            disableButton();
             try {
                 byte[] data = mFileUtils.getBytes(parsePath);
                 savePhoto(data);
             } catch (IOException e) {
-                e.printStackTrace();
+                mUtils.snackIt(mRootLayout,R.string.submission_snack_error_upload);
+                // TODO: 9/4/2015 SEND TO LOGGER
+                //e.printStackTrace();
             }
         }
     }
@@ -257,7 +258,9 @@ public class SubmissionActivity extends AppCompatActivity {
         try {
             filePath = imageChooserManager.choose();
         } catch (Exception e) {
-            e.printStackTrace();
+            mUtils.snackIt(mRootLayout,R.string.submission_snack_error_choose);
+            // TODO: 9/4/2015 SEND TO LOGGER
+            //e.printStackTrace();
         }
     }
 
@@ -268,9 +271,10 @@ public class SubmissionActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     saveWallpaper();
-                    Snackbar.make(mRootLayout, "Submitted!", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    e.printStackTrace();
+                    mUtils.snackIt(mRootLayout, R.string.submission_snack_error_upload);
+                    // TODO: 9/4/2015 SEND TO LOGGER
+                    //e.printStackTrace();
                 }
             }
         });
@@ -292,9 +296,13 @@ public class SubmissionActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    Log.d(TAG, "Saved to Wallpaper");
+                    enableButton();
+                    resetImageChooser();
+                    mUtils.snackIt(mRootLayout, "Wallpaper submitted successfully!");
                 } else {
-                    e.printStackTrace();
+                    mUtils.snackIt(mRootLayout,R.string.submission_snack_error_submission);
+                    // TODO: 9/4/2015 SEND TO LOGGER
+                    //e.printStackTrace();
                 }
             }
         });
@@ -318,6 +326,34 @@ public class SubmissionActivity extends AppCompatActivity {
         }
     }
 
+    private void enableButton(){
+        if(!mSubmitButton.isEnabled()){
+            mSubmitButton.setEnabled(true);
+        }
+
+        if(mButtonProgress.getVisibility() == View.VISIBLE){
+            mButtonProgress.setVisibility(View.GONE);
+        }
+    }
+
+    private void disableButton(){
+        if(mSubmitButton.isEnabled()){
+            mSubmitButton.setEnabled(false);
+        }
+
+        if(mButtonProgress.getVisibility() == View.GONE){
+            mButtonProgress.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void resetImageChooser(){
+        mChooseImageIcon.setVisibility(View.VISIBLE);
+        mChosenImage.setImageDrawable(null);
+        mChosenImage.setBackground(null);
+        mTagGroup.setTags("");
+        mMaterialSpinner.setSelection(-1);
+    }
+
     private ImageChooserListener mImageChooserListener = new ImageChooserListener() {
         @Override
         public void onImageChosen(ChosenImage chosenImage) {
@@ -325,13 +361,14 @@ public class SubmissionActivity extends AppCompatActivity {
             Log.i(TAG, "Chosen Image: T - " + chosenImage.getFileThumbnail());
             Log.i(TAG, "Chosen Image: Ts - " + chosenImage.getFileThumbnailSmall());
             renderChosenImage(chosenImage);
+            enableButton();
             parsePath = chosenImage.getFilePathOriginal();
             fileName = mFileUtils.getFileName(parsePath);
         }
 
         @Override
         public void onError(String s) {
-            Log.d(TAG, "onError ImageChooseListener: "+s);
+            Log.d(TAG, "onError ImageChooseListener: " + s);
         }
     };
 

@@ -45,6 +45,17 @@ public class Utils {
         }).show();
     }
 
+    public void snackIt(View rootLayout, int resourceId){
+
+        final Snackbar snackbar = Snackbar.make(rootLayout, mContext.getString(resourceId), Snackbar.LENGTH_LONG);
+        snackbar.setAction("OK", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+            }
+        }).show();
+    }
+
     public void snackIt(View rootLayout, String message, View.OnClickListener listener){
 
         final Snackbar snackbar = Snackbar.make(rootLayout, message, Snackbar.LENGTH_LONG);

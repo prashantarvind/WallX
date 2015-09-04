@@ -15,7 +15,7 @@
     <dimen name="nav_header_text_margin_left">16dp</dimen>
 
     <!-- Home -->
-    <dimen name="recycler_grid_spacing">10dp</dimen>
+    <dimen name="recycler_grid_spacing">2dp</dimen>
     <!--  -->
     <dimen name="cardview_radius">4dp</dimen>
     <!-- Material Sheet FAB -->

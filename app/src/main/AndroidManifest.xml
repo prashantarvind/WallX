@@ -78,7 +78,7 @@
             android:name=".activity.SubmissionActivity"
             android:label="@string/title_activity_submission"
             android:parentActivityName=".activity.HomeActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize|stateHidden" >
+            android:windowSoftInputMode="adjustResize|stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />

@@ -22,63 +22,75 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         style="@style/ElevationCompatTheme"/>
-    <FrameLayout
-        android:id="@+id/chooseImageLayout"
+    <ScrollView
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:background="@color/black_alpha_30"
-        tools:layout_height="350dp">
-        <ImageView
-            android:id="@+id/chosenImage"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:id="@+id/chooseImageLayout"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="@color/black_alpha_30"
+                tools:layout_height="350dp">
+                <ImageView
+                    android:id="@+id/chosenImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-        <ImageView
-            android:id="@+id/chooseImageIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_add_white_18dp"/>
-    </FrameLayout>
-    <com.bentenstudio.wallx.views.MaterialSpinner
-        android:id="@+id/chooseCategory"
-        android:layout_below="@id/chooseImageLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        app:ms_thickness="2dp"
-        app:ms_baseColor="@color/error_color"
-        app:ms_floatingLabelText="Category"
-        app:ms_hint="Choose Category"/>
-    <me.gujun.android.taggroup.TagGroup
-        android:layout_below="@id/chooseCategory"
-        android:id="@+id/tagGroup"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        style="@style/TagGroup"
-        app:atg_inputHint="@string/submission.hint.tag"
-        app:atg_isAppendMode="true"/>
-    <LinearLayout
-        android:id="@+id/actionLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tagGroup"
-        android:orientation="horizontal">
-        <android.support.v7.widget.CardView
-            android:id="@+id/submitButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_like"
-            card_view:cardElevation="4dp">
-            <TextView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/chooseImageIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_add_white_18dp"/>
+            </FrameLayout>
+            <com.bentenstudio.wallx.views.MaterialSpinner
+                android:id="@+id/chooseCategory"
+                android:layout_below="@id/chooseImageLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/submission.button.submit"
-                android:layout_gravity="center"
-                android:padding="10dp"/>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+                android:paddingBottom="0dp"
+                android:textColor="@color/colorPrimary"
+                app:ms_baseColor="@color/colorPrimary"
+                app:ms_thickness="2dp"
+                app:ms_floatingLabelText="Category"
+                app:ms_hint="Choose Category"/>
+            <me.gujun.android.taggroup.TagGroup
+                android:layout_below="@id/chooseCategory"
+                android:id="@+id/tagGroup"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                style="@style/TagGroup"
+                app:atg_inputHint="@string/submission.hint.tag"
+                app:atg_isAppendMode="true"/>
+            <android.support.v7.widget.CardView
+                android:id="@+id/submitButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_like"
+                android:layout_below="@id/tagGroup"
+                card_view:cardElevation="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/submission.button.submit"
+                    android:duplicateParentState="true"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black"
+                    android:padding="10dp"/>
+                <ProgressBar
+                    android:id="@+id/buttonProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:visibility="gone"/>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

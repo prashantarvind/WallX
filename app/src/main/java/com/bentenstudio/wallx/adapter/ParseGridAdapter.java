@@ -1,9 +1,7 @@
 package com.bentenstudio.wallx.adapter;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,15 +52,10 @@ public class ParseGridAdapter extends ParseRecyclerQueryAdapter<ParseWallpaper, 
     public void onBindViewHolder(ParseGridAdapter.ViewHolder holder, final int position) {
         runEnterAnimation(holder.itemView,position);
         final ParseWallpaper item = getItem(position);
-        Point dimen = mDeviceUtils.getScaledPoint(item.getWidth(),item.getHeight());
-        Log.d(TAG, "onBindViewHolder x:"+dimen.x+" y:"+dimen.y);
-        /*holder.mGridThumbnail.setMinimumWidth(dimen.x);
-        holder.mGridThumbnail.setMinimumHeight(dimen.y);*/
         holder.mGridThumbnail.setMinimumHeight(mDeviceUtils.getGridItemHeight());
         Glide.with(mContext)
                 .load(item.getWallpaperFile().getUrl())
                 .placeholder(R.drawable.placeholder)
-                .error(R.drawable.splash_background)
                 .thumbnail(0.1f)
                 .centerCrop()
                 .dontAnimate()

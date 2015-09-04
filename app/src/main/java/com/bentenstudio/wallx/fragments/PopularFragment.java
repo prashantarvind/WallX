@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +16,8 @@ import android.widget.TextView;
 import com.bentenstudio.wallx.AppController;
 import com.bentenstudio.wallx.Config;
 import com.bentenstudio.wallx.Constant;
-import com.bentenstudio.wallx.activity.DetailsActivity;
 import com.bentenstudio.wallx.R;
+import com.bentenstudio.wallx.activity.DetailsActivity;
 import com.bentenstudio.wallx.adapter.ParseGridAdapter;
 import com.bentenstudio.wallx.adapter.ParseRecyclerQueryAdapter;
 import com.bentenstudio.wallx.interfaces.Parse;
@@ -64,7 +64,7 @@ public class PopularFragment extends Fragment {
         mDeviceUtils = AppController.getInstance().getUtils().getDeviceUtils();
 
         mProgressLoader.setVisibility(View.VISIBLE);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(Config.GRID_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),Config.GRID_COLUMNS));
         adapter = new ParseGridAdapter(getParseFactory(),false,getActivity());
         adapter.addOnQueryLoadListener(new mQueryLoadListener());
         adapter.setOnGridItemClickListener(new mGridItemClickListener());

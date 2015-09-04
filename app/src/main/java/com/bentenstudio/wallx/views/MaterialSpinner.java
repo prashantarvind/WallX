@@ -147,7 +147,7 @@ public class MaterialSpinner extends Spinner implements ValueAnimator.AnimatorUp
 
     private void initAttributes(Context context, AttributeSet attrs) {
 
-        TypedArray a = context.obtainStyledAttributes(new int[]{R.attr.colorControlNormal, R.attr.colorAccent});
+        TypedArray a = context.obtainStyledAttributes(new int[]{R.attr.colorPrimary, R.attr.colorAccent});
         int defaultBaseColor = a.getColor(0, 0);
         int defaultHighlightColor = a.getColor(1, 0);
         int defaultErrorColor = context.getResources().getColor(R.color.error_color);

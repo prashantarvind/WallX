@@ -32,6 +32,9 @@
     <string name="submission.button.cancel">Cancel</string>
     <string name="submission.hint.tag">Add tag</string>
     <string name="submission.validation.category">Please select a category</string>
+    <string name="submission.snack.error.upload">Failed to upload image to Parse.</string>
+    <string name="submission.snack.error.submission">Failed to submit wallpaper to Parse.</string>
+    <string name="submission.snack.error.choose">Failed to choose image</string>
 
     <string name="detail.snack.save.success">Successfully saved wallpaper</string>
     <string name="detail.snack.save.failure">Failed to save wallpaper</string>

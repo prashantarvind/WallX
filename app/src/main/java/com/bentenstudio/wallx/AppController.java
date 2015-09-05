@@ -22,6 +22,9 @@ public class AppController extends Application {
 
     private static Class currentVisible = null;
 
+
+    //siteryllyaceruiestednown
+    //fd28abbf54ce1c90bd230af31f5ee428022fa1c1
     @Override
     public void onCreate() {
         super.onCreate();

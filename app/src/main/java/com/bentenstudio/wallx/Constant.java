@@ -14,6 +14,9 @@ public class Constant {
     public static final int DETAIL_FAVOURITE = 5;
     public static final int DETAIL_DOWNLOADS = 6;
 
+    public static final String FACEBOOK_URL = "https://facebook.com/";
+    public static final String TWITTER_URL = "https://twitter.com/";
+
     public static final String PARSE_LABEL_CATEGORY = "categories";
     public enum Category{
         GRID("Grid",CATEGORY_GRID),

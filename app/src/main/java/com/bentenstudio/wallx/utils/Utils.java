@@ -1,7 +1,9 @@
 package com.bentenstudio.wallx.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
@@ -70,5 +72,24 @@ public class Utils {
 
     public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static void launchEmailApp(Context context, String emailTo){
+        if (emailTo.length() == 0) {
+            return;
+        }
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+        String aEmailList[] = {emailTo};
+
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+        emailIntent.setType("plain/text");
+        context.startActivity(emailIntent);
+    }
+
+    public static void launchBrowser(Context context, String url){
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        context.startActivity(i);
     }
 }

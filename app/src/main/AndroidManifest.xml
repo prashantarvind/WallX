@@ -99,6 +99,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
+        <activity android:name=".activity.AboutActivity"/>
         <activity android:name=".activity.ProfileDispatchActivity"/>
         <activity android:name=".activity.ProfileActivity"/>
         <activity android:name=".activity.SettingActivity"/>

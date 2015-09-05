@@ -113,6 +113,10 @@ public class BaseDrawerActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.navAbout:
+                    if(!AppController.isActivityVisible(AboutActivity.class)){
+                        AboutActivity.start(BaseDrawerActivity.this);
+                        finish();
+                    }
                     break;
                 case R.id.navSetting:
                     if(!AppController.isActivityVisible(SettingActivity.class)){

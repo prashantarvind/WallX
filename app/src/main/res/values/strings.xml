@@ -36,6 +36,7 @@
     <string name="submission.snack.error.submission">Failed to submit wallpaper to Parse.</string>
     <string name="submission.snack.error.choose">Failed to choose image</string>
 
+    <!-- Details -->
     <string name="detail.snack.save.success">Successfully saved wallpaper</string>
     <string name="detail.snack.save.failure">Failed to save wallpaper</string>
     <string name="detail.snack.set.success">Successfully set as wallpaper</string>
@@ -49,6 +50,10 @@
     <string name="detail.action.save.text">Save to Storage</string>
     <string name="detail.action.favourite.text">Add to Favourites</string>
 
+    <!-- About -->
+    <string name="about.text.made_with">Made with </string>
+    <string name="about.text.by"> by Benten Studio</string>
+    <string name="about.text.codecanyon">A project sold on Codecanyon</string>
 
     <!-- Setting -->
     <string name="setting.snack.login.facebook.success">Successfully login with Facebook</string>

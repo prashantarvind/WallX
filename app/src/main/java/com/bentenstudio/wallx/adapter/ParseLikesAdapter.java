@@ -1,9 +1,7 @@
 package com.bentenstudio.wallx.adapter;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,20 +51,20 @@ public class ParseLikesAdapter extends ParseRecyclerQueryAdapter<ParseLikes, Par
 
     @Override
     public void onBindViewHolder(ParseLikesAdapter.ViewHolder holder, final int position) {
-        runEnterAnimation(holder.itemView,position);
+        runEnterAnimation(holder.itemView, position);
         ParseLikes likes = getItem(position);
         final ParseWallpaper item = likes.getLinkedWallpaper();
-        Log.d(TAG, "onBindViewHolder " + item.getWallpaperFile().getUrl());
-        Point dimen = mDeviceUtils.getScaledPoint(item.getWidth(),item.getHeight());
-        holder.mGridThumbnail.setMinimumWidth(dimen.x);
-        holder.mGridThumbnail.setMinimumHeight(dimen.y);
+        holder.mGridThumbnail.setMinimumHeight(mDeviceUtils.getGridItemHeight());
         Glide.with(mContext)
                 .load(item.getWallpaperFile().getUrl())
+                .placeholder(R.drawable.placeholder)
+                .thumbnail(0.1f)
+                .centerCrop()
+                .dontAnimate()
                 .into(holder.mGridThumbnail);
         holder.mGridThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick "+position);
                 mItemClickListener.onGridItemClick(v,item,position);
             }
         });

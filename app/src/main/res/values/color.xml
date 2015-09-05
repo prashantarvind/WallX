@@ -8,7 +8,9 @@
     <color name="nav_item_icon_tint_color">#cecece</color> <!--333-->
     <color name="nav_item_text_color">#cecece</color> <!--333-->
     <color name="black_alpha_30">#4D000000</color>
+    <color name="black_alpha_60">#a0000000</color>
 
+    <color name="about_background">#a0ffffff</color>
     <!-- Material Spinner -->
     <color name="disabled_color">#44000000</color>
     <color name="error_color">#E7492E</color>

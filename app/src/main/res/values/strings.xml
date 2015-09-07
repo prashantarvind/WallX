@@ -28,6 +28,18 @@
     <!-- General -->
     <string name="general.login.notice">Please login to see content</string>
 
+
+    <!-- Intro -->
+    <string name="intro.slide1.title">WallX</string>
+    <string name="intro.slide1.description">Your ultimate wallpaper application</string>
+    <string name="intro.slide2.title">Easy Customization</string>
+    <string name="intro.slide2.description">This app Intro is easy to customize. So do other parts of the source.</string>
+    <string name="intro.slide3.title">Sold on Envato</string>
+    <string name="intro.slide3.description">This item is sold exclusively on Codecanyon</string>
+
+
+
+    <!-- Submission -->
     <string name="submission.button.submit">Submit</string>
     <string name="submission.button.cancel">Cancel</string>
     <string name="submission.hint.tag">Add tag</string>

@@ -2,14 +2,18 @@ package com.bentenstudio.wallx.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.bentenstudio.wallx.AppController;
 import com.bentenstudio.wallx.Config;
 import com.bentenstudio.wallx.Constant;
 import com.bentenstudio.wallx.R;
 import com.bentenstudio.wallx.utils.Utils;
+import com.bentenstudio.wallx.views.Blur;
 
 import net.steamcrafted.materialiconlib.MaterialIconView;
 
@@ -17,7 +21,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class AboutActivity extends BaseDrawerActivity implements View.OnClickListener{
+    public final static String TAG = AboutActivity.class.getSimpleName();
 
+    //@Bind(R.id.rootLayout) RelativeLayout mRootLayout;
+    @Bind(R.id.blurView) ImageView mBlurView;
     @Bind(R.id.iconFacebook) MaterialIconView iconFacebook;
     @Bind(R.id.iconEmail) MaterialIconView iconEmail;
     @Bind(R.id.iconTwitter) MaterialIconView iconTwitter;
@@ -27,9 +34,22 @@ public class AboutActivity extends BaseDrawerActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
-        AppController.setActivityVisible(HomeActivity.class);
+        AppController.setActivityVisible(AboutActivity.class);
         setHamburgerButton();
         setTitle("About");
+
+        //Blurry.with(this).radius(25).sampling(2).onto(mRootLayout);
+        /*Blurry.with(this)
+                .radius(10)
+                .sampling(2)
+                .async()
+                .capture(mBlurView)
+                .into(mBlurView);*/
+        mBlurView.setDrawingCacheEnabled(true);
+        Bitmap sent = BitmapFactory.decodeResource(getResources(),
+                R.drawable.about_background);
+        Bitmap blurred = Blur.fastblur(this,sent,20);
+        mBlurView.setImageBitmap(blurred);
     }
 
     @Override
@@ -50,7 +70,7 @@ public class AboutActivity extends BaseDrawerActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        AppController.setActivityVisible(HomeActivity.class);
+        AppController.setActivityVisible(AboutActivity.class);
     }
 
     @Override

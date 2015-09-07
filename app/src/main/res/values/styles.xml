@@ -36,7 +36,7 @@
 
     <style name="About"/>
     <style name="About.MadeWith">
-        <item name="android:textColor">@color/black_alpha_60</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>

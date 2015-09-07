@@ -2,6 +2,7 @@ package com.bentenstudio.wallx;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.bentenstudio.wallx.model.ParseCategory;
 import com.bentenstudio.wallx.model.ParseLikes;
@@ -16,7 +17,7 @@ import com.parse.ParseObject;
 import jonathanfinerty.once.Once;
 
 public class AppController extends Application {
-
+    public final static String TAG = AppController.class.getSimpleName();
     private static AppController INSTANCE;
     private static Utils UTILS;
 
@@ -68,6 +69,7 @@ public class AppController extends Application {
 
     public static void setActivityVisible(Class className){
         currentVisible = className;
+        Log.d(TAG, "setActivityVisible "+className);
     }
 
     public static void setActivityInvisible(){
@@ -75,6 +77,7 @@ public class AppController extends Application {
     }
 
     public static boolean isActivityVisible(Class className) {
+        Log.d(TAG, "isActivityVisible "+className);
         return currentVisible != null && currentVisible.equals(className);
     }
 }

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bentenstudio.wallx.AppController;
@@ -49,7 +50,9 @@ public class SplashActivity extends AppCompatActivity {
     @Bind(R.id.progressMessage) TextView mProgressMessage;
     @Bind(R.id.skipButton) Button skipButton;
     @Bind(R.id.loginButton) Button loginButton;
+    @Bind(R.id.retryButton) Button retryButton;
     @Bind(R.id.buttonLayout) LinearLayout buttonLayout;
+    @Bind(R.id.progressBar) ProgressBar mProgressBar;
 
     //@Bind(R.id.splashBlurringView) BlurringView blurringView;
     @Override
@@ -71,12 +74,12 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private void startFromSetting(){
+    private void startFromSetting() {
         startActivityForResult(builder.build(), RC_LOGIN_SETTING);
 
     }
 
-    private void startFromNormal(){
+    private void startFromNormal() {
         if (!Once.beenDone(Once.THIS_APP_INSTALL, onceIntro)) {
             IntroActivity.start(this);
             finish();
@@ -94,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_LOGIN_NORMAL && resultCode == RESULT_OK) {
             startLoadingScreen();
-        } else if (requestCode == RC_LOGIN_SETTING && resultCode == RESULT_OK){
+        } else if (requestCode == RC_LOGIN_SETTING && resultCode == RESULT_OK) {
             SettingActivity.start(this);
             finish();
         }
@@ -103,6 +106,11 @@ public class SplashActivity extends AppCompatActivity {
     private void setMessage(String message) {
         if (mProgressMessage.getVisibility() == View.GONE) {
             mProgressMessage.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        if (mProgressBar.getVisibility() == View.GONE){
+            mProgressBar.setVisibility(View.VISIBLE);
         }
         mProgressMessage.setText(message);
     }
@@ -116,7 +124,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void showLoginOptions(){
+    private void showLoginOptions() {
         buttonLayout.setVisibility(View.VISIBLE);
         skipButton.setText("Skip");
         loginButton.setText("Login/Register");
@@ -158,6 +166,8 @@ public class SplashActivity extends AppCompatActivity {
                         // TODO: 8/31/2015 Send log report
                     } else {
                         setMessage("Please check your Internet connection and try again");
+                        mProgressBar.setVisibility(View.GONE);
+                        retryButton.setVisibility(View.VISIBLE);
                     }
 
                 }
@@ -166,11 +176,11 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    private class mButtonClickListener implements View.OnClickListener{
+    private class mButtonClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.skipButton:
                     Once.markDone(onceSkipLogin);
                     buttonLayout.setVisibility(View.GONE);
@@ -179,13 +189,19 @@ public class SplashActivity extends AppCompatActivity {
                 case R.id.loginButton:
                     startActivityForResult(builder.build(), RC_LOGIN_NORMAL);
                     break;
+                case R.id.retryButton:
+                    if(mDeviceUtils.isConnected(SplashActivity.this)){
+                        retryButton.setVisibility(View.GONE);
+                        downloadCategories();
+                    }
+                    break;
             }
         }
     }
 
-    public static void start(Context context,String from) {
+    public static void start(Context context, String from) {
         Intent starter = new Intent(context, SplashActivity.class);
-        starter.putExtra(KEY_FROM,from);
+        starter.putExtra(KEY_FROM, from);
         context.startActivity(starter);
     }
 }

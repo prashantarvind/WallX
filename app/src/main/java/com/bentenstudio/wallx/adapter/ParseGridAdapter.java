@@ -1,12 +1,16 @@
 package com.bentenstudio.wallx.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bentenstudio.wallx.AppController;
 import com.bentenstudio.wallx.R;
@@ -21,18 +25,22 @@ import butterknife.ButterKnife;
 
 public class ParseGridAdapter extends ParseRecyclerQueryAdapter<ParseWallpaper, ParseGridAdapter.ViewHolder> {
     public final static String TAG = ParseGridAdapter.class.getSimpleName();
-    private static final int ANIMATED_ITEMS_COUNT = 10;
+    public static final int TYPE_RECENT = 10;
+    public static final int TYPE_POPULAR = 20;
+    public static final int TYPE_UPLOADS = 30;
 
     private int lastAnimatedPosition = -1;
 
     private Context mContext;
     private DeviceUtils mDeviceUtils;
     private Parse.OnGridItemClickListener mItemClickListener;
+    private int mType;
 
-    public ParseGridAdapter(ParseQueryAdapter.QueryFactory<ParseWallpaper> factory, boolean hasStableIds, Context context) {
+    public ParseGridAdapter(ParseQueryAdapter.QueryFactory<ParseWallpaper> factory, boolean hasStableIds, Context context, int type) {
         super(factory, hasStableIds);
         this.mContext = context;
         this.mDeviceUtils = AppController.getInstance().getUtils().getDeviceUtils();
+        this.mType = type;
         try {
             this.mItemClickListener = (Parse.OnGridItemClickListener) context;
         }catch (ClassCastException e){
@@ -50,7 +58,7 @@ public class ParseGridAdapter extends ParseRecyclerQueryAdapter<ParseWallpaper, 
 
     @Override
     public void onBindViewHolder(ParseGridAdapter.ViewHolder holder, final int position) {
-        runEnterAnimation(holder.itemView,position);
+        runEnterAnimation(holder.itemView, position);
         final ParseWallpaper item = getItem(position);
         holder.mGridThumbnail.setMinimumHeight(mDeviceUtils.getGridItemHeight());
         Glide.with(mContext)
@@ -66,6 +74,18 @@ public class ParseGridAdapter extends ParseRecyclerQueryAdapter<ParseWallpaper, 
                 mItemClickListener.onGridItemClick(v,item,position);
             }
         });
+
+        if (mType == TYPE_RECENT){
+            holder.mExtraInfo.setText(DateUtils.getRelativeTimeSpanString(
+                    item.getCreatedAt().getTime(),
+                    System.currentTimeMillis(),
+                    DateUtils.SECOND_IN_MILLIS,
+                    DateUtils.FORMAT_ABBREV_RELATIVE));
+        //} else if(mType == TYPE_POPULAR){
+
+        } else {
+            holder.mExtraLayout.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
@@ -77,6 +97,8 @@ public class ParseGridAdapter extends ParseRecyclerQueryAdapter<ParseWallpaper, 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.gridThumbnail) ImageView mGridThumbnail;
+        @Bind(R.id.extraLayout) LinearLayout mExtraLayout;
+        @Bind(R.id.extraInfo) TextView mExtraInfo;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

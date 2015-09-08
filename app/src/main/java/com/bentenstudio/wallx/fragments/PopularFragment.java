@@ -65,7 +65,7 @@ public class PopularFragment extends Fragment {
 
         mProgressLoader.setVisibility(View.VISIBLE);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),Config.GRID_COLUMNS));
-        adapter = new ParseGridAdapter(getParseFactory(),false,getActivity());
+        adapter = new ParseGridAdapter(getParseFactory(),false,getActivity(),ParseGridAdapter.TYPE_POPULAR);
         adapter.addOnQueryLoadListener(new mQueryLoadListener());
         adapter.setOnGridItemClickListener(new mGridItemClickListener());
         mRecyclerView.getRecycledViewPool().setMaxRecycledViews(0, 2 * Config.GRID_COLUMNS);

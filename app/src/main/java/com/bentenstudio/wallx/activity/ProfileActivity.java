@@ -2,7 +2,6 @@ package com.bentenstudio.wallx.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +34,6 @@ public class ProfileActivity extends BaseDrawerActivity {
     ParseGridAdapter mAdapter;
 
     @Bind(R.id.toolbar) Toolbar mToolbar;
-    @Bind(R.id.collapsingToolbarLayout) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @Bind(R.id.app_bar) AppBarLayout mAppBarLayout;
     @Bind(R.id.profileContent) RecyclerView mRecyclerView;
     @Bind(R.id.rootLayout) CoordinatorLayout mRootLayout;
@@ -50,15 +48,15 @@ public class ProfileActivity extends BaseDrawerActivity {
         AppController.setActivityVisible(ProfileActivity.class);
 
         setHamburgerButton();
-        setTitle("Profile");
-
+        setTitle("Uploads");
+        mToolbar.setSubtitle("Subtitle");
         initRecyclerView();
         setupSwipeRefresh();
     }
 
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(Config.GRID_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
-        mAdapter = new ParseGridAdapter(getParseFactory(), false, this);
+        mAdapter = new ParseGridAdapter(getParseFactory(), false, this,ParseGridAdapter.TYPE_UPLOADS);
         mAdapter.addOnQueryLoadListener(new mQueryLoadListener());
         mAdapter.setOnGridItemClickListener(new mGridItemClickListener());
         mRecyclerView.setAdapter(mAdapter);

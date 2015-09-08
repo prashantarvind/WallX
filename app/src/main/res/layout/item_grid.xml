@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,4 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:duplicateParentState="true"/>
+    <LinearLayout
+        android:id="@+id/extraLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_alpha_30"
+        android:layout_gravity="bottom">
+        <TextView
+            android:id="@+id/extraInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="10dp"
+            tools:text="Test"/>
+    </LinearLayout>
+
 </android.support.v7.widget.CardView>

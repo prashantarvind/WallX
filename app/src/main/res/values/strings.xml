@@ -10,7 +10,7 @@
 
     <!-- Navigation Items -->
     <string name="nav_home">Home</string>
-    <string name="nav_profile">Profile</string>
+    <string name="nav_profile">Uploads</string>
     <string name="nav_about">About</string>
     <string name="nav_collection">Collection</string>
     <string name="nav_downloads">Downloads</string>

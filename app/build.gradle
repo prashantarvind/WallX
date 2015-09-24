@@ -1,5 +1,24 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.parse'
 
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://maven.parse.com/repo'
+        }
+    }
+    dependencies {
+        classpath 'com.parse.tools:gradle:1.+'
+    }
+}
+
+parse {
+    applicationId "sKeTH0N1lTGNwNrw334Ly545T6lftwiSITeTZsaMjtp"
+    masterKey "sDY3vgyJyDvNzfXeXlIdkRGuo1b348A6cvYHYnEdq1"
+    // This makes it automatic. Otherwise you would have to run e.g. gradlew parseUploadSymbolsRelease.
+    uploadSymbols true
+}
 android {
     compileSdkVersion 23
     buildToolsVersion '22.0.1'
@@ -39,6 +58,7 @@ dependencies {
     compile project(':ParseLoginUI')
     compile files('libs/ParseFacebookUtilsV4-1.10.0.jar')
     compile files('libs/ParseTwitterUtils-1.10.0.jar')
+    compile files('libs/ParseCrashReporting-1.10.2.jar')
     compile 'com.facebook.android:facebook-android-sdk:4.5.0'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -59,4 +79,5 @@ dependencies {
     compile project(':v4')
     compile 'jp.wasabeef:blurry:1.0.3'
     compile 'com.github.paolorotolo:appintro:3.2.0'
+    compile 'com.google.android.gms:play-services-ads:7.8.0'
 }

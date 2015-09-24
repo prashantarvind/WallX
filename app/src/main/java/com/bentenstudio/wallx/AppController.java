@@ -10,6 +10,7 @@ import com.bentenstudio.wallx.model.ParseWallpaper;
 import com.bentenstudio.wallx.utils.Utils;
 import com.bentenstudio.wallx.utils.Validate;
 import com.parse.Parse;
+import com.parse.ParseCrashReporting;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
@@ -19,6 +20,8 @@ import jonathanfinerty.once.Once;
 public class AppController extends Application {
     public final static String TAG = AppController.class.getSimpleName();
     private static AppController INSTANCE;
+    private final static String APPLICATION_ID = Config.PARSE_APPLICATION_ID;
+    private final static String CLIENT_KEY = Config.PARSE_CLIENT_KEY;
     private static Utils UTILS;
 
     private static Class currentVisible = null;
@@ -37,8 +40,10 @@ public class AppController extends Application {
         ParseObject.registerSubclass(ParseLikes.class);
 
         /** Parse Init **/
-        Parse.initialize(this, "sKeTH0N1lTGNwNrw334LyT6lftwiSITeTZsaMjtp", "6E9W5JaaEbk4xDZnpx0vTwzuivi5NfDaNPJrr5kF");
+        ParseCrashReporting.enable(this);
+        Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
+
 
         /** Parse Push **/
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();

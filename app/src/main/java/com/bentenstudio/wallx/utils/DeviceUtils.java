@@ -1,9 +1,11 @@
 package com.bentenstudio.wallx.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -76,5 +78,14 @@ public class DeviceUtils {
         }
 
         return false;
+    }
+
+    public int convertDpToPx(int dp){
+        Resources r = mContext.getResources();
+        return(int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                r.getDisplayMetrics()
+        );
     }
 }

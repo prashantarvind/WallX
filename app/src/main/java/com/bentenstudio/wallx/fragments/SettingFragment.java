@@ -159,7 +159,7 @@ public class SettingFragment extends PreferenceFragment {
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dialog.dismiss();
                     }
                 })
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

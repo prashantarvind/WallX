@@ -8,6 +8,10 @@
     <string name="twitter_consumer_key">YOUR_TWITTER_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret">YOUR_TWITTER_CONSUMER_SECRET</string>
 
+    <!-- Monetization -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
     <!-- Navigation Items -->
     <string name="nav_home">Home</string>
     <string name="nav_profile">Uploads</string>
@@ -23,7 +27,7 @@
     </string-array>
 
 
-    <string name="home.noresult">No result found</string>
+    <string name="home.no_result">No result found</string>
 
     <!-- General -->
     <string name="general.login.notice">Please login to see content</string>

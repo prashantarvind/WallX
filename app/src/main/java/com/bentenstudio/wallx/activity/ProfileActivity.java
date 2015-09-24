@@ -49,7 +49,6 @@ public class ProfileActivity extends BaseDrawerActivity {
 
         setHamburgerButton();
         setTitle("Uploads");
-        mToolbar.setSubtitle("Subtitle");
         initRecyclerView();
         setupSwipeRefresh();
     }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.CoordinatorLayout.LayoutParams;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
 import com.bentenstudio.wallx.AppController;
+import com.bentenstudio.wallx.Config;
 import com.bentenstudio.wallx.R;
 import com.bentenstudio.wallx.adapter.HomePagerAdapter;
 import com.bentenstudio.wallx.utils.Utils;
@@ -52,6 +54,12 @@ public class HomeActivity extends BaseDrawerActivity {
         mViewPager.setAdapter(adapter);
         mViewPager.setCurrentItem(1);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        if(Config.SHOULD_SHOW_BANNERS){
+            LayoutParams params = (LayoutParams) mFloatingButton.getLayoutParams();
+            params.setMargins(0,0,mUtils.getDeviceUtils().convertDpToPx(20),mUtils.getDeviceUtils().convertDpToPx(55));
+            mFloatingButton.setLayoutParams(params);
+        }
 
         mFloatingButton.setOnClickListener(mFABListener);
     }

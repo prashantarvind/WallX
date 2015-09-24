@@ -73,7 +73,7 @@
                     android:id="@+id/likesNoResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/home.noresult"
+                    android:text="@string/home.no_result"
                     android:visibility="gone"/>
         </android.support.v4.widget.SwipeRefreshLayout>
         <View

@@ -39,6 +39,7 @@
             android:layout_below="@id/progressMessage"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"/>
         <Button
             android:id="@+id/retryButton"
@@ -67,13 +68,19 @@
             android:id="@+id/skipButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:layout_margin="10dp"
+            android:textColor="@color/black_alpha_30"
+            tools:text="SKIP"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/loginButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:layout_margin="10dp"
+            android:textColor="@color/black_alpha_60"
+            tools:text="Login/Register"
             android:layout_weight="1"/>
     </LinearLayout>
 

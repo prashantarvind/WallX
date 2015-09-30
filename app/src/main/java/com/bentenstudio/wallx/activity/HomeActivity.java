@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bentenstudio.wallx.AppController;
 import com.bentenstudio.wallx.Config;
 import com.bentenstudio.wallx.R;
@@ -75,12 +76,7 @@ public class HomeActivity extends BaseDrawerActivity {
         public void onClick(View v) {
 
             if (ParseUser.getCurrentUser() == null) {
-                mUtils.snackIt(mRootLayout, getString(R.string.detail_snack_login_required), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO: 8/31/2015 Start Login Activity
-                    }
-                });
+                buildLoginDialog();
             } else {
                 int[] startingLocation = new int[2];
                 v.getLocationOnScreen(startingLocation);
@@ -89,6 +85,25 @@ public class HomeActivity extends BaseDrawerActivity {
             }
         }
     };
+
+    private MaterialDialog buildLoginDialog(){
+        return new MaterialDialog.Builder(this)
+                .title("Login Required")
+                .content("Please login to submit a new wallpaper. Do you want to login/register?")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        SubmissionDispatchActivity.start(HomeActivity.this);
+                    }
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        dialog.dismiss();
+                    }
+                })
+                .negativeText("No")
+                .positiveText("Yes").show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

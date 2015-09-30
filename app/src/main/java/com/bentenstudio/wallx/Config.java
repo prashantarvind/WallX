@@ -10,8 +10,8 @@ public class Config {
     public static final boolean SHOULD_SHOW_BANNERS = true;
     public static final boolean SHOULD_SHOW_INTERSTITIAL = true;
 
-    public static final String PARSE_APPLICATION_ID = "sKeTH0N1lTGNwNrw334LyT6lftwiSITeTZsaMjtp";
-    public static final String PARSE_CLIENT_KEY = "6E9W5JaaEbk4xDZnpx0vTwzuivi5NfDaNPJrr5kF";
+    public static final String PARSE_APPLICATION_ID = "HUzMrRodsfoWRNUbYjA4ZwSMXnQI2PHZxpr6jG2j";
+    public static final String PARSE_CLIENT_KEY = "C6D95A2gk7ImyhmYOnX3lgaeUGK2ZWMpgpPvs3H7";
 
     public static final String FACEBOOK_PAGE = "bentenstudio";
     public static final String TWITTER_ID = "bentenstudio";
